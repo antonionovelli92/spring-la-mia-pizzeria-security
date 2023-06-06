@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dettaglio Pizza</title>
+    <!-- Aggiungi il link al file CSS di Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="text-center my-5">
+			  <a  th:href="@{/}"><img src="https://img.freepik.com/premium-vector/pizza-logo-design-template_15146-192.jpg" alt="Logo Pizza" width="100"></a>
+            <h1 class="mb-3">Dettaglio Pizza</h1>
+        </header>
+        
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title" th:text="${pizza.nome}"></h5>
+                <p class="card-text" th:text="${pizza.descrizione}"></p>
+                <img class="card-img-top" th:src="${pizza.foto}" alt="Immagine Pizza">
+                <p class="card-text">Prezzo: <span th:text="${pizza.prezzo}"></span></p>
+            </div>
+        </div>
+        
+        <a class="btn btn-primary mt-3" th:href="@{/offerta/{pizzaId}/nuova(pizzaId=${pizza.id})}">Crea nuova offerta speciale</a>
+        
+        <div class="mt-5">
+            <h2>Offerte speciali</h2>
+            <ul class="list-group">
+                <li class="list-group-item" th:each="offertaSpeciale : ${offerteSpeciali}">
+                    <h4 th:text="${offertaSpeciale.titolo}"></h4>
+                    <p>Percentuale di sconto: <span th:text="${offertaSpeciale.percentualeSconto}"></span></p>
+                    <a class="btn btn-primary" th:href="@{/offerta/{offertaId}/modifica(offertaId=${offertaSpeciale.id})}">Modifica offerta speciale</a>
+                </li>
+            </ul>
+        </div>
+        
+        <a class="btn btn-primary mt-3" th:href="@{/}">Torna all'elenco pizze</a>
+    </div>
+</body>
+</html>
