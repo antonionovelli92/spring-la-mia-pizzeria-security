@@ -103,21 +103,21 @@ public class PizzaApplication implements CommandLineRunner {
 	}
 
 	private void initializeRolesAndUsers() {
-		// Creazione dei ruoli
-		Role roleUser = new Role("USER");
-		Role roleAdmin = new Role("ADMIN");
+		  BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+	        
+	        Role roleUser = new Role("USER");
+	        Role roleAdmin = new Role("ADMIN");
 
-		roleService.save(roleUser);
-		roleService.save(roleAdmin);
+	        roleService.save(roleUser);
+	        roleService.save(roleAdmin);
 
-		// Codifica della password
-		final String encodedPassword = new BCryptPasswordEncoder().encode("password");
+	        String encodedPassword = passwordEncoder.encode("pws");
 
-		// Creazione degli utenti
-		User user = new User("user", encodedPassword, roleUser);
-		User admin = new User("admin", encodedPassword, roleAdmin);
+	        User userUser = new User("user", encodedPassword, roleUser);
+	        User userAdmin = new User("admin", encodedPassword, roleAdmin);
 
-		userService.save(user);
-		userService.save(admin);
+	        userService.save(userUser);
+	        userService.save(userAdmin);
 	}
+
 }

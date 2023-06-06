@@ -10,10 +10,13 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 public class AuthConfiguration {
 
-    @Bean
-    PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+	@Bean
+	PasswordEncoder passwordEncoder() {
+		
+//	    return PasswordEncoderFactories.createDelegatingPasswordEncoder();
+		
+		return new BCryptPasswordEncoder();
+	}
 
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
