@@ -11,13 +11,15 @@ import jakarta.validation.constraints.NotNull;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.Objects;
+
 import java.util.Set;
 
 @Entity
 public class User implements UserDetails {
 
-    @Id
+    private static final long serialVersionUID = 2004300741702449259L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -51,22 +53,6 @@ public class User implements UserDetails {
     }
 
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-  
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
 
     @Override
     public boolean isAccountNonExpired() {
@@ -87,7 +73,6 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
-
     public Long getId() {
         return id;
     }
@@ -96,6 +81,23 @@ public class User implements UserDetails {
         this.id = id;
     }
 
+  
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+    	return password;
+    }
+    
+    public void setPassword(String password) {
+    	this.password = password;
+    }
+  
     public Set<Role> getRoles() {
         return roles;
     }
@@ -108,19 +110,15 @@ public class User implements UserDetails {
         setRoles(new HashSet<>(Arrays.asList(roles)));
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, password, roles, username);
-    }
+  
+
+   
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null || getClass() != obj.getClass())
-            return false;
-        User other = (User) obj;
-        return Objects.equals(id, other.id) && Objects.equals(password, other.password)
-                && Objects.equals(roles, other.roles) && Objects.equals(username, other.username);
-    }
+	public String toString() {
+		
+		return "[" + getId() + "] " + getUsername();
+	}
+
+	
 }

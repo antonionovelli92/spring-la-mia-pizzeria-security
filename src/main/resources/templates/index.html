@@ -37,7 +37,9 @@
                         <a th:href="@{/pizza/{id}(id=${pizza.id})}" th:text="${pizza.nome}"></a>
                     </td>
                     <td th:text="${pizza.descrizione}"></td>
-                    <td th:text="${pizza.foto}"></td>
+                    <td>
+                        <img th:src="${pizza.foto}" alt="Foto Pizza" width="100">
+                    </td>
                     <td th:text="${pizza.prezzo}"></td>
                     <td>
                          <div class="btn-group" role="group">
